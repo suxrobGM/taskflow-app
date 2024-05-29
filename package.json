@@ -9,9 +9,9 @@
     "start": "next start",
     "lint": "next lint",
     "typeorm": "typeorm-ts-node-esm",
-    "migration:apply": "npm run build:orm && npm run typeorm migration:run -- -d dist/data/DataSource.js",
-    "migration:create": "npm run build:orm && npm run typeorm migration:generate -- -d dist/data/DataSource.js",
-    "migration:revert": "npm run build:orm && npm run migration:revert -- -d dist/data/DataSource.js"
+    "migration:apply": "npm run build:orm && npm run typeorm migration:run -- -d dist/DataSource.js",
+    "migration:create": "npm run build:orm && npm run typeorm migration:generate -- -d dist/DataSource.js",
+    "migration:revert": "npm run build:orm && npm run migration:revert -- -d dist/DataSource.js"
   },
   "dependencies": {
     "next": "14.2.3",

@@ -21,9 +21,7 @@ export class Task {
   @Column({default: TaskPriority.LOW})
   priority: TaskPriority = TaskPriority.LOW;
 
-  @Column('date', {
-    default: new Date(),
-  })
+  @Column('date', {default: () => 'CURRENT_TIMESTAMP'})
   createdDate: Date = new Date();
 
   @Column('date')

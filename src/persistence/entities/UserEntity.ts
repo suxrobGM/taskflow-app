@@ -25,6 +25,9 @@ export class User {
   @Column()
   password!: string;
 
+  @Column('date', {default: () => 'CURRENT_TIMESTAMP'})
+  createdDate: Date = new Date();
+
   @OneToMany(() => Task, (task) => task.assignedUser)
   assignedTasks?: Task[];
 

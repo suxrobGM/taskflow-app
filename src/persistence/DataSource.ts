@@ -1,7 +1,6 @@
-import * as path from 'path';
-import {DataSourceOptions} from 'typeorm';
+import {DataSource} from 'typeorm';
 
-export const DatabaseConfig: DataSourceOptions = {
+const AppDataSource = new DataSource({
   type: 'postgres',
   host: 'localhost',
   port: 5432,
@@ -11,4 +10,5 @@ export const DatabaseConfig: DataSourceOptions = {
   entities: [`dist/entities/*Entity.{ts,js}`],
   migrationsTableName: 'migrations_history',
   migrations: [`dist/migrations/*.{ts,js}`],
-};
+});
+export default AppDataSource;

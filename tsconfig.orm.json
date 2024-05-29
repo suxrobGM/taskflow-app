@@ -16,6 +16,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src/app/persistence/**/*.ts"],
+  "include": ["src/persistence/**/*.ts"],
   "exclude": ["node_modules"]
 }

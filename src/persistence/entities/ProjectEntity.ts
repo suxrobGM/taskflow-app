@@ -20,9 +20,7 @@ export class Project {
   @Column('text')
   description?: string;
 
-  @Column('date', {
-    default: new Date(),
-  })
+  @Column('date', {default: () => 'CURRENT_TIMESTAMP'})
   createdDate: Date = new Date();
 
   @OneToMany(() => Task, (task) => task.project, {
