@@ -4,11 +4,11 @@ const AppDataSource = new DataSource({
   type: 'postgres',
   host: 'localhost',
   port: 5432,
-  database: 'TaskTrackerDB',
+  database: 'TaskflowDB',
   username: 'postgres',
   password: 'postgres',
-  entities: [`dist/entities/*Entity.{ts,js}`],
+  entities: ['dist/entities/*Entity.js'],
   migrationsTableName: 'migrations_history',
-  migrations: [`dist/migrations/*.{ts,js}`],
+  migrations: ['dist/migrations/*.js'],
 });
 export default AppDataSource;

@@ -13,7 +13,7 @@ export class User {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
-  @Column({})
+  @Column()
   firstName!: string;
 
   @Column()
@@ -21,9 +21,6 @@ export class User {
 
   @Column()
   email!: string;
-
-  @Column()
-  password!: string;
 
   @Column('date', {default: () => 'CURRENT_TIMESTAMP'})
   createdDate: Date = new Date();
@@ -33,6 +30,9 @@ export class User {
 
   @OneToMany(() => Task, (task) => task.createdBy)
   createdTasks?: Task[];
+
+  @OneToMany(() => Project, project => project.createdBy)
+  createdProjects?: Project[];
 
   @ManyToMany(() => Project, project => project.members)
   projects?: Project[];

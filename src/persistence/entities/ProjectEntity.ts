@@ -5,6 +5,7 @@ import {
   OneToMany,
   ManyToMany,
   JoinTable,
+  ManyToOne,
 } from 'typeorm';
 import {Task} from './TaskEntity';
 import {User} from './UserEntity';
@@ -24,10 +25,15 @@ export class Project {
   createdDate: Date = new Date();
 
   @OneToMany(() => Task, (task) => task.project, {
-    cascade: true,
     onDelete: 'CASCADE',
   })
   tasks?: Task[];
+
+  @ManyToOne(() => User, (user) => user.createdTasks, {
+    nullable: true,
+    onDelete: 'SET NULL',
+  })
+  createdBy?: User;
 
   @ManyToMany(() => User)
   @JoinTable()

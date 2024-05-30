@@ -3,17 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "clean": "rm -rf .next && rm -rf dist",
     "dev": "next dev",
     "build": "next build",
     "build:orm": "tsc -p tsconfig.orm.json",
     "start": "next start",
     "lint": "next lint",
     "typeorm": "typeorm-ts-node-esm",
-    "migration:apply": "npm run build:orm && npm run typeorm migration:run -- -d dist/DataSource.js",
-    "migration:create": "npm run build:orm && npm run typeorm migration:generate -- -d dist/DataSource.js",
-    "migration:revert": "npm run build:orm && npm run migration:revert -- -d dist/DataSource.js"
+    "migration:apply": "npm run clean && npm run build:orm && npm run typeorm migration:run -- -d dist/DataSource.js",
+    "migration:create": "npm run clean && npm run build:orm && npm run typeorm migration:generate -- -d dist/DataSource.js",
+    "migration:revert": "npm run clean && npm run build:orm && npm run migration:revert -- -d dist/DataSource.js"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^3.5.0",
     "next": "14.2.3",
     "pg": "^8.11.5",
     "react": "^18",
