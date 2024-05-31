@@ -5,6 +5,7 @@ import {
   OneToMany,
   ManyToMany,
 } from 'typeorm';
+import type {Relation} from 'typeorm';
 import {Task} from './TaskEntity';
 import {Project} from './ProjectEntity';
 
@@ -26,14 +27,14 @@ export class User {
   createdDate: Date = new Date();
 
   @OneToMany(() => Task, (task) => task.assignedUser)
-  assignedTasks?: Task[];
+  assignedTasks?: Relation<Task>[];
 
-  @OneToMany(() => Task, (task) => task.createdBy)
-  createdTasks?: Task[];
+  @OneToMany(() => Task, (task) => task.createdByUser)
+  createdTasks?: Relation<Task>[];
 
-  @OneToMany(() => Project, project => project.createdBy)
-  createdProjects?: Project[];
+  @OneToMany(() => Project, project => project.createdByUser)
+  createdProjects?: Relation<Project>[];
 
   @ManyToMany(() => Project, project => project.members)
-  projects?: Project[];
+  projects?: Relation<Project>[];
 }

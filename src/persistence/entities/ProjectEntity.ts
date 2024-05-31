@@ -7,8 +7,9 @@ import {
   JoinTable,
   ManyToOne,
 } from 'typeorm';
-import {Task} from './TaskEntity';
+import type {Relation} from 'typeorm';
 import {User} from './UserEntity';
+import {Task} from './TaskEntity';
 
 @Entity()
 export class Project {
@@ -24,18 +25,16 @@ export class Project {
   @Column('date', {default: () => 'CURRENT_TIMESTAMP'})
   createdDate: Date = new Date();
 
-  @OneToMany(() => Task, (task) => task.project, {
-    onDelete: 'CASCADE',
-  })
-  tasks?: Task[];
-
-  @ManyToOne(() => User, (user) => user.createdTasks, {
+  @ManyToOne(() => User, {
     nullable: true,
     onDelete: 'SET NULL',
   })
-  createdBy?: User;
+  createdByUser?: Relation<User>;
+
+  @OneToMany(() => Task, (task) => task.project)
+  tasks?: Relation<Task>[];
 
   @ManyToMany(() => User)
   @JoinTable()
-  members?: User[];
+  members?: Relation<User>[];
 }

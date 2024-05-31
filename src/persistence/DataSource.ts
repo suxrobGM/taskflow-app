@@ -1,4 +1,5 @@
 import {DataSource} from 'typeorm';
+import {Project, Task, User} from './entities';
 
 const AppDataSource = new DataSource({
   type: 'postgres',
@@ -7,8 +8,15 @@ const AppDataSource = new DataSource({
   database: 'TaskflowDB',
   username: 'postgres',
   password: 'postgres',
-  entities: ['dist/entities/*Entity.js'],
+  entities: [
+    Project,
+    Task,
+    User,
+  ],
   migrationsTableName: 'migrations_history',
-  migrations: ['dist/migrations/*.js'],
+  migrations: [
+    (process.env.NODE_ENV as string) === 'migration' ? 'dist/migrations/*.js' : '',
+  ],
 });
+
 export default AppDataSource;

@@ -1,4 +1,10 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToOne} from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+} from 'typeorm';
+import type {Relation} from 'typeorm';
 import {User} from './UserEntity';
 import {TaskPriority} from './TaskPriority';
 import {TaskStatus} from './TaskStatus';
@@ -15,10 +21,10 @@ export class Task {
   @Column('text')
   description?: string;
 
-  @Column({default: TaskStatus.OPEN})
+  @Column({type: 'enum', enum: TaskStatus, default: TaskStatus.OPEN})
   status: TaskStatus = TaskStatus.OPEN;
 
-  @Column({default: TaskPriority.LOW})
+  @Column({type: 'enum', enum: TaskPriority, default: TaskPriority.LOW})
   priority: TaskPriority = TaskPriority.LOW;
 
   @Column('date', {default: () => 'CURRENT_TIMESTAMP'})
@@ -27,18 +33,18 @@ export class Task {
   @Column('date')
   dueDate?: Date;
 
-  @ManyToOne(() => User, (user) => user.assignedTasks, {
+  @ManyToOne(() => User, {
     nullable: true,
     onDelete: 'SET NULL',
   })
-  assignedUser?: User;
+  assignedUser?: Relation<User>;
 
   @ManyToOne(() => User, (user) => user.createdTasks, {
     nullable: false,
     onDelete: 'SET NULL',
   })
-  createdBy?: User;
+  createdByUser?: Relation<User>;
 
   @ManyToOne(() => Project, (project) => project.tasks)
-  project?: Project;
+  project?: Relation<Project>;
 }
