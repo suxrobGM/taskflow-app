@@ -10,7 +10,7 @@ import {TaskPriority} from './TaskPriority';
 import {TaskStatus} from './TaskStatus';
 import {Project} from './ProjectEntity';
 
-@Entity()
+@Entity({name: 'tasks'})
 export class Task {
   @PrimaryGeneratedColumn('uuid')
   id!: string;

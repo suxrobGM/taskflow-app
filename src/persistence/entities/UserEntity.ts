@@ -9,7 +9,7 @@ import type {Relation} from 'typeorm';
 import {Task} from './TaskEntity';
 import {Project} from './ProjectEntity';
 
-@Entity()
+@Entity({name: 'users'})
 export class User {
   @PrimaryGeneratedColumn('uuid')
   id!: string;

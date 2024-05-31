@@ -11,7 +11,7 @@ import type {Relation} from 'typeorm';
 import {User} from './UserEntity';
 import {Task} from './TaskEntity';
 
-@Entity()
+@Entity({name: 'projects'})
 export class Project {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
