@@ -39,7 +39,7 @@ AUTH0_CLIENT_SECRET=your_auth0_client_secret
 ### 4. Configure the Database
 Create a PostgreSQL database named **TaskflowDB**. Update the database connection settings in the [DataSource](./src/persistence/DataSource.ts) configuration file:
 ```typescript
-export const AppDataSource = new DataSource({
+const AppDataSource = new DataSource({
   type: 'postgres',
   host: 'localhost',
   port: 5432,
