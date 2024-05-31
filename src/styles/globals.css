@@ -1,7 +1,8 @@
 @layer tailwind-base, primereact, tailwind-utilities;
 
 @import 'primereact/resources/themes/lara-light-blue/theme.css' layer(primereact);
-
+@import 'primeicons/primeicons.css';
+        
 @layer tailwind-base {
   @tailwind base;
 }
@@ -11,7 +12,7 @@
   @tailwind utilities;
 }
 
-:root {
+/* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
@@ -39,4 +40,4 @@ body {
   .text-balance {
     text-wrap: balance;
   }
-}
+} */
