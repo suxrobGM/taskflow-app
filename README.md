@@ -13,8 +13,8 @@ Before you begin, ensure you have the following installed:
 ### 1. Clone the Repository
 Start by cloning the repository to your local machine:
 ```bash
-git clone https://yourrepositorylink.com/taskflow.git
-cd taskflow
+git clone https://github.com/suxrobGM/taskflow-app.git
+cd taskflow-app
 ```
 
 ### 2. Install Dependencies
