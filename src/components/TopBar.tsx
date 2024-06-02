@@ -73,12 +73,12 @@ export default function TopBar() {
                 Account
               </a>
               <a href="/api/auth/logout" className="block py-2 cursor-pointer">
-                Logout
+                Sign Out
               </a>
             </>
           ) : (
             <a href="/api/auth/login" className="block py-2 cursor-pointer">
-              Login
+              Sign In
             </a>
           )}
         </div>
