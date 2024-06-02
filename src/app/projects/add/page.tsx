@@ -1,12 +1,12 @@
 'use client';
 
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {Button} from 'primereact/button';
 import {InputText} from 'primereact/inputtext';
 import {InputTextarea} from 'primereact/inputtextarea';
 
-export default function NewProjectPage() {
-  const [project, setProject] = useState({ name: '', description: '' });
+export default function AddProjectPage() {
+  const [project, setProject] = useState({name: '', description: ''});
 
   const handleInputChange = (e: any) => {
     const {name, value} = e.target;

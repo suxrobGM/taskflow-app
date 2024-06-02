@@ -1,6 +1,5 @@
 'use server';
 
-import React from 'react';
 import Link from 'next/link';
 import {Button} from 'primereact/button';
 import {DataTable} from 'primereact/datatable';
@@ -15,12 +14,12 @@ export default async function ProjectsPage() {
   const actionsColumnTemplate = (rowData: Project) => {
     'use server';
     return (
-      <React.Fragment>
+      <>
         <Link href={`/projects/edit/${rowData.id}`}>
-          <Button icon="pi pi-pencil" className="p-button-rounded p-button-info mr-2" />
+          <Button icon="pi pi-pencil" className="mr-2" severity="info" rounded />
         </Link>
-        <Button icon="pi pi-trash" className="p-button-rounded p-button-danger" />
-      </React.Fragment>
+        <Button icon="pi pi-trash" severity="danger" rounded />
+      </>
     );
   };
 
@@ -28,7 +27,7 @@ export default async function ProjectsPage() {
     <div className="p-4">
       <div className="text-right mb-4">
         <Link href="/projects/add">
-          <Button label="Add Project" icon="pi pi-plus" className="p-button-rounded p-button-success" />
+          <Button label="Add Project" icon="pi pi-plus" severity="success" rounded />
         </Link>
       </div>
       <DataTable value={projects}>
