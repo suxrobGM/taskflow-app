@@ -1,19 +1,19 @@
-import React, {useState, useEffect} from 'react';
-import {useRouter} from 'next/router';
-import {Button} from 'primereact/button';
-import {InputText} from 'primereact/inputtext';
-import {InputTextarea} from 'primereact/inputtextarea';
+import {useState, useEffect} from "react";
+import {useRouter} from "next/router";
+import {Button} from "primereact/button";
+import {InputText} from "primereact/inputtext";
+import {InputTextarea} from "primereact/inputtextarea";
 
 export default function EditProjectPage() {
-  const [project, setProject] = useState({name: '', description: ''});
+  const [project, setProject] = useState({name: "", description: ""});
   const router = useRouter();
   const {id} = router.query;
 
   useEffect(() => {
     // Fetch project data from server
-    console.log('Fetch project data for id:', id);
+    console.log("Fetch project data for id:", id);
     // Simulate fetching data
-    setProject({name: 'Existing Project Name', description: 'Existing Project Description'});
+    setProject({name: "Existing Project Name", description: "Existing Project Description"});
   }, [id]);
 
   const handleInputChange = (e: any) => {
@@ -22,7 +22,7 @@ export default function EditProjectPage() {
   };
 
   const handleSubmit = () => {
-    console.log('Update Project Data:', project);
+    console.log("Update Project Data:", project);
     // Update data on server
   };
 
@@ -40,4 +40,4 @@ export default function EditProjectPage() {
       </div>
     </div>
   );
-};
+}

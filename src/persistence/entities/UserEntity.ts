@@ -1,17 +1,11 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  OneToMany,
-  ManyToMany,
-} from 'typeorm';
-import type {Relation} from 'typeorm';
-import {Task} from './TaskEntity';
-import {Project} from './ProjectEntity';
+import {Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany} from "typeorm";
+import type {Relation} from "typeorm";
+import {Task} from "./TaskEntity";
+import {Project} from "./ProjectEntity";
 
-@Entity({name: 'users'})
+@Entity({name: "users"})
 export class User {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn("uuid")
   id!: string;
 
   @Column()
@@ -23,7 +17,7 @@ export class User {
   @Column()
   email!: string;
 
-  @Column('date', {default: () => 'CURRENT_TIMESTAMP'})
+  @Column("date", {default: () => "CURRENT_TIMESTAMP"})
   createdDate: Date = new Date();
 
   @OneToMany(() => Task, (task) => task.assignedUser)
@@ -32,9 +26,9 @@ export class User {
   @OneToMany(() => Task, (task) => task.createdByUser)
   createdTasks?: Relation<Task>[];
 
-  @OneToMany(() => Project, project => project.createdByUser)
+  @OneToMany(() => Project, (project) => project.createdByUser)
   createdProjects?: Relation<Project>[];
 
-  @ManyToMany(() => Project, project => project.members)
+  @ManyToMany(() => Project, (project) => project.members)
   projects?: Relation<Project>[];
 }

@@ -1,6 +1,6 @@
-import AppDataSource from '../DataSource';
-import {User} from '../entities';
-import {ensureDatabaseInitialized} from '../InitDatabase';
+import AppDataSource from "../DataSource";
+import {User} from "../entities";
+import {ensureDatabaseInitialized} from "../InitDatabase";
 
 export class UserRepository {
   private readonly userRepository = AppDataSource.getRepository(User);

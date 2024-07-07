@@ -1,4 +1,4 @@
-import AppDataSource from './DataSource';
+import AppDataSource from "./DataSource";
 
 export async function ensureDatabaseInitialized(): Promise<void> {
   if (!AppDataSource.isInitialized) {

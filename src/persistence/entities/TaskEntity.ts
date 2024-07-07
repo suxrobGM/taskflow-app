@@ -1,47 +1,42 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  ManyToOne,
-} from 'typeorm';
-import type {Relation} from 'typeorm';
-import {User} from './UserEntity';
-import {TaskPriority} from './TaskPriority';
-import {TaskStatus} from './TaskStatus';
-import {Project} from './ProjectEntity';
+import {Entity, PrimaryGeneratedColumn, Column, ManyToOne} from "typeorm";
+import type {Relation} from "typeorm";
+import {User} from "./UserEntity";
+import {TaskPriority} from "./TaskPriority";
+import {TaskStatus} from "./TaskStatus";
+import {Project} from "./ProjectEntity";
 
-@Entity({name: 'tasks'})
+@Entity({name: "tasks"})
 export class Task {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn("uuid")
   id!: string;
 
   @Column()
   title!: string;
 
-  @Column('text')
+  @Column("text")
   description?: string;
 
-  @Column({type: 'enum', enum: TaskStatus, default: TaskStatus.OPEN})
+  @Column({type: "enum", enum: TaskStatus, default: TaskStatus.OPEN})
   status: TaskStatus = TaskStatus.OPEN;
 
-  @Column({type: 'enum', enum: TaskPriority, default: TaskPriority.LOW})
+  @Column({type: "enum", enum: TaskPriority, default: TaskPriority.LOW})
   priority: TaskPriority = TaskPriority.LOW;
 
-  @Column('date', {default: () => 'CURRENT_TIMESTAMP'})
+  @Column("date", {default: () => "CURRENT_TIMESTAMP"})
   createdDate: Date = new Date();
 
-  @Column('date')
+  @Column("date")
   dueDate?: Date;
 
   @ManyToOne(() => User, {
     nullable: true,
-    onDelete: 'SET NULL',
+    onDelete: "SET NULL",
   })
   assignedUser?: Relation<User>;
 
   @ManyToOne(() => User, (user) => user.createdTasks, {
     nullable: false,
-    onDelete: 'SET NULL',
+    onDelete: "SET NULL",
   })
   createdByUser?: Relation<User>;
 

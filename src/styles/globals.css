@@ -2,7 +2,7 @@
 
 @import 'primereact/resources/themes/lara-light-blue/theme.css' layer(primereact);
 @import 'primeicons/primeicons.css';
-        
+       
 @layer tailwind-base {
   @tailwind base;
 }

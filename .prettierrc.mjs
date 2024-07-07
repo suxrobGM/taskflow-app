@@ -5,7 +5,7 @@ const config = {
   tabWidth: 2, // "visual width" of of the "tab"
   trailingComma: 'es5', // add trailing commas in objects, arrays, etc.
   semi: true, // add ; when needed
-  singleQuote: true, // '' for stings instead of ""
+  singleQuote: false, // '' for stings instead of ""
   bracketSpacing: false, // import {some} ... instead of import { some } ...
   arrowParens: 'always', // braces even for single param in arrow functions (a) => { }
   jsxSingleQuote: false, // "" for react props, like in html

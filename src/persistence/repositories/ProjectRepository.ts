@@ -1,6 +1,6 @@
-import AppDataSource from '../DataSource';
-import {Project} from '../entities';
-import {ensureDatabaseInitialized} from '../InitDatabase';
+import AppDataSource from "../DataSource";
+import {Project} from "../entities";
+import {ensureDatabaseInitialized} from "../InitDatabase";
 
 export class ProjectRepository {
   private readonly projectRepository = AppDataSource.getRepository(Project);
@@ -46,7 +46,7 @@ export class ProjectRepository {
     if (saveChanges) {
       await this.projectRepository.save(project);
     }
-    
+
     return project;
   }
 }

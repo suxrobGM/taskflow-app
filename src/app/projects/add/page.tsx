@@ -1,35 +1,27 @@
-'use client';
+import {Button} from "primereact/button";
+import {Card} from "primereact/card";
+import {InputText} from "primereact/inputtext";
+import {InputTextarea} from "primereact/inputtextarea";
 
-import {useState} from 'react';
-import {Button} from 'primereact/button';
-import {InputText} from 'primereact/inputtext';
-import {InputTextarea} from 'primereact/inputtextarea';
+async function handleSubmit(data: FormData) {
+  "use server";
+}
 
 export default function AddProjectPage() {
-  const [project, setProject] = useState({name: '', description: ''});
-
-  const handleInputChange = (e: any) => {
-    const {name, value} = e.target;
-    setProject({ ...project, [name]: value });
-  };
-
-  const handleSubmit = () => {
-    console.log('Project Data:', project);
-    // Post data to server
-  };
+  const header = <div className="font-bold text-xl text-center py-3">Create New Project</div>;
+  const footer = <Button type="submit" label="Create Project" className="mt-2" />;
 
   return (
-    <div className="p-4">
-      <h1>Create New Project</h1>
-      <div>
-        <h5>Name</h5>
-        <InputText name="name" value={project.name} onChange={handleInputChange} />
-
-        <h5>Description</h5>
-        <InputTextarea name="description" value={project.description} onChange={handleInputChange} />
-
-        <Button label="Create Project" onClick={handleSubmit} className="mt-2" />
-      </div>
+    <div className="flex justify-center">
+      <Card className="w-full md:w-1/2" header={header} footer={footer}>
+        <form className="flex flex-col gap-2" action={handleSubmit}>
+          <label>Name</label>
+          <InputText name="name" />
+          
+          <label>Description</label>
+          <InputTextarea name="description" />
+        </form>
+      </Card>
     </div>
   );
-};
+}

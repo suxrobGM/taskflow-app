@@ -1,8 +1,7 @@
-'use client';
-
-import {useState} from 'react';
-import {useUser} from '@auth0/nextjs-auth0/client';
-import {useRouter} from 'next/navigation';
+"use client";
+import {useState} from "react";
+import {useUser} from "@auth0/nextjs-auth0/client";
+import {useRouter} from "next/navigation";
 
 export default function TopBar() {
   const router = useRouter();
@@ -15,11 +14,11 @@ export default function TopBar() {
     <header className="bg-gray-800 text-white">
       <div className="flex justify-between items-center p-4">
         <div className="flex items-center space-x-4">
-          <a className="text-lg font-bold cursor-pointer" onClick={() => navigate('/')}>
+          <a className="text-lg font-bold cursor-pointer" onClick={() => navigate("/")}>
             Taskflow
           </a>
           <div className="hidden md:block">
-            <a className="text-white cursor-pointer" onClick={() => navigate('/projects')}>
+            <a className="text-white cursor-pointer" onClick={() => navigate("/projects")}>
               Projects
             </a>
           </div>
@@ -28,7 +27,10 @@ export default function TopBar() {
           <div className="hidden md:flex items-center space-x-4">
             {user ? (
               <>
-                <a className="text-white cursor-pointer flex items-center space-x-2" onClick={() => navigate('/account')}>
+                <a
+                  className="text-white cursor-pointer flex items-center space-x-2"
+                  onClick={() => navigate("/account")}
+                >
                   <i className="pi pi-user text-xl"></i>
                   <span>Account</span>
                 </a>
@@ -44,19 +46,16 @@ export default function TopBar() {
               </a>
             )}
           </div>
-          
-          <button onClick={toggleMenu}
-            className="md:hidden text-white focus:outline-none">
-            <svg className="w-6 h-6"
+
+          <button onClick={toggleMenu} className="md:hidden text-white focus:outline-none">
+            <svg
+              className="w-6 h-6"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16m-7 6h7">
-              </path>
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
             </svg>
           </button>
         </div>
@@ -64,12 +63,12 @@ export default function TopBar() {
 
       {isOpen && (
         <div className="md:hidden bg-gray-800 text-white p-4">
-          <a className="block py-2 cursor-pointer" onClick={() => navigate('/projects')}>
+          <a className="block py-2 cursor-pointer" onClick={() => navigate("/projects")}>
             Projects
           </a>
           {user ? (
             <>
-              <a className="block py-2 cursor-pointer" onClick={() => navigate('/account')}>
+              <a className="block py-2 cursor-pointer" onClick={() => navigate("/account")}>
                 Account
               </a>
               <a href="/api/auth/logout" className="block py-2 cursor-pointer">

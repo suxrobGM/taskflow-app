@@ -1,18 +1,16 @@
-'use server';
-
-import Link from 'next/link';
-import {Button} from 'primereact/button';
-import {DataTable} from 'primereact/datatable';
-import {Column} from 'primereact/column';
-import {Project} from '@/persistence/entities';
-import {ProjectRepository} from '@/persistence/repositories';
+import Link from "next/link";
+import {Button} from "primereact/button";
+import {DataTable} from "primereact/datatable";
+import {Column} from "primereact/column";
+import {Project} from "@/persistence/entities";
+import {ProjectRepository} from "@/persistence/repositories";
 
 export default async function ProjectsPage() {
   const projectRepository = new ProjectRepository();
   const projects = await projectRepository.getAllProjects();
 
-  const actionsColumnTemplate = (rowData: Project) => {
-    'use server';
+  const actionsColumnTemplate = async (rowData: Project) => {
+    "use server";
     return (
       <>
         <Link href={`/projects/edit/${rowData.id}`}>
@@ -38,4 +36,4 @@ export default async function ProjectsPage() {
       </DataTable>
     </div>
   );
-};
+}
