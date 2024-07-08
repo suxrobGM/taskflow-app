@@ -1,31 +1,40 @@
 import AppDataSource from "../DataSource";
-import {Project} from "../entities";
 import {ensureDatabaseInitialized} from "../InitDatabase";
+import {Project} from "../entities";
+import {ProjectMapper} from '../mappers';
+import {
+  UpdateProjectDto,
+  CreateProjectDto,
+  ProjectDto,
+} from "../models"
+
 
 export class ProjectRepository {
   private readonly projectRepository = AppDataSource.getRepository(Project);
 
-  async getAllProjects(): Promise<Project[]> {
+  async getAllProjects(): Promise<ProjectDto[]> {
     await ensureDatabaseInitialized();
-    return this.projectRepository.find();
+    const projects = await this.projectRepository.find();
+    return projects.map(project => ProjectMapper.toDto(project));
   }
 
-  async getProjectById(id: string): Promise<Project | null> {
+  async getProjectById(id: string): Promise<ProjectDto | null> {
     await ensureDatabaseInitialized();
-    return this.projectRepository.findOneBy({id: id});
+    const project = await this.projectRepository.findOneBy({id: id});
+    return project ? ProjectMapper.toDto(project) : null;
   }
 
-  async createProject(options: CreateProjectOptions): Promise<Project> {
+  async createProject(options: CreateProjectDto): Promise<ProjectDto> {
     await ensureDatabaseInitialized();
     const project = this.projectRepository.create({
       name: options.name,
       description: options.description,
     });
-    await this.projectRepository.save(project);
-    return project;
+    const createdProject = await this.projectRepository.save(project);
+    return ProjectMapper.toDto(createdProject);
   }
 
-  async updateProject(id: string, options: UpdateProjectOptions): Promise<Project> {
+  async updateProject(id: string, options: UpdateProjectDto): Promise<ProjectDto> {
     await ensureDatabaseInitialized();
     const project = await this.projectRepository.findOneBy({id: id});
     let saveChanges = false;
@@ -38,7 +47,7 @@ export class ProjectRepository {
       project.name = options.name;
       saveChanges = true;
     }
-    if (project.description !== options.description) {
+    if (options.description && options.description !== project.description) {
       project.description = options.description;
       saveChanges = true;
     }
@@ -47,16 +56,6 @@ export class ProjectRepository {
       await this.projectRepository.save(project);
     }
 
-    return project;
+    return ProjectMapper.toDto(project);
   }
-}
-
-interface CreateProjectOptions {
-  name: string;
-  description?: string;
-}
-
-interface UpdateProjectOptions {
-  name: string;
-  description?: string;
 }

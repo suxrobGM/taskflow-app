@@ -2,10 +2,10 @@ import type {Metadata} from "next";
 import {Inter} from "next/font/google";
 import {UserProvider} from "@auth0/nextjs-auth0/client";
 import {PrimeReactProvider} from "primereact/api";
-import TopBar from "@/components/TopBar";
+import {TopBar} from "@/components";
 import "@/styles/globals.css";
-import "primereact/resources/themes/lara-light-cyan/theme.css";
-import "primeicons/primeicons.css";
+// import "primereact/resources/themes/lara-light-cyan/theme.css";
+// import "primeicons/primeicons.css";
 
 interface RootLayoutProps {
   children: React.ReactNode;

@@ -1,49 +1,44 @@
 "use client";
+import Link from 'next/link';
 import {useState} from "react";
 import {useUser} from "@auth0/nextjs-auth0/client";
-import {useRouter} from "next/navigation";
 
-export default function TopBar() {
-  const router = useRouter();
+export function TopBar() {
   const {user} = useUser();
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
-  const navigate = (path: string) => router.push(path);
 
   return (
     <header className="bg-gray-800 text-white">
       <div className="flex justify-between items-center p-4">
         <div className="flex items-center space-x-4">
-          <a className="text-lg font-bold cursor-pointer" onClick={() => navigate("/")}>
+          <Link href="/" className="text-lg font-bold cursor-pointer">
             Taskflow
-          </a>
+          </Link>
           <div className="hidden md:block">
-            <a className="text-white cursor-pointer" onClick={() => navigate("/projects")}>
+            <Link href="/projects" className="text-white cursor-pointer">
               Projects
-            </a>
+            </Link>
           </div>
         </div>
         <div className="flex items-center space-x-4">
           <div className="hidden md:flex items-center space-x-4">
             {user ? (
               <>
-                <a
-                  className="text-white cursor-pointer flex items-center space-x-2"
-                  onClick={() => navigate("/account")}
-                >
+                <Link href="/account" className="text-white cursor-pointer flex items-center space-x-2">
                   <i className="pi pi-user text-xl"></i>
                   <span>Account</span>
-                </a>
-                <a href="/api/auth/logout" className="text-white cursor-pointer flex items-center space-x-2">
+                </Link>
+                <Link href="/api/auth/logout" className="text-white cursor-pointer flex items-center space-x-2">
                   <i className="pi pi-sign-out text-xl"></i>
                   <span>Sign Out</span>
-                </a>
+                </Link>
               </>
             ) : (
-              <a href="/api/auth/login" className="text-white cursor-pointer flex items-center space-x-2">
+              <Link href="/api/auth/login" className="text-white cursor-pointer flex items-center space-x-2">
                 <i className="pi pi-sign-in text-xl"></i>
                 <span>Sign In</span>
-              </a>
+              </Link>
             )}
           </div>
 
@@ -63,22 +58,22 @@ export default function TopBar() {
 
       {isOpen && (
         <div className="md:hidden bg-gray-800 text-white p-4">
-          <a className="block py-2 cursor-pointer" onClick={() => navigate("/projects")}>
+          <Link href="/projects" className="block py-2 cursor-pointer">
             Projects
-          </a>
+          </Link>
           {user ? (
             <>
-              <a className="block py-2 cursor-pointer" onClick={() => navigate("/account")}>
+              <Link href="/account" className="block py-2 cursor-pointer">
                 Account
-              </a>
-              <a href="/api/auth/logout" className="block py-2 cursor-pointer">
+              </Link>
+              <Link href="/api/auth/logout" className="block py-2 cursor-pointer">
                 Sign Out
-              </a>
+              </Link>
             </>
           ) : (
-            <a href="/api/auth/login" className="block py-2 cursor-pointer">
+            <Link href="/api/auth/login" className="block py-2 cursor-pointer">
               Sign In
-            </a>
+            </Link>
           )}
         </div>
       )}

@@ -1,11 +1,13 @@
 import AppDataSource from "../DataSource";
-import {User} from "../entities";
 import {ensureDatabaseInitialized} from "../InitDatabase";
+import {User} from "../entities";
+import {UserMapper} from '../mappers';
+import {CreateUserDto, UserDto} from "../models";
 
 export class UserRepository {
   private readonly userRepository = AppDataSource.getRepository(User);
 
-  async tryCreateUser(options: TryCreateUserOptions): Promise<User> {
+  async tryCreateUser(options: CreateUserDto): Promise<UserDto> {
     await ensureDatabaseInitialized();
     let user = await this.userRepository.findOneBy({email: options.email});
 
@@ -18,12 +20,8 @@ export class UserRepository {
       await this.userRepository.save(user);
     }
 
-    return user;
+    return UserMapper.toDto(user);
   }
 }
 
-interface TryCreateUserOptions {
-  email: string;
-  firstName: string;
-  lastName: string;
-}
+

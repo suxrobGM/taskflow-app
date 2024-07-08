@@ -1,8 +1,7 @@
 import {Entity, PrimaryGeneratedColumn, Column, ManyToOne} from "typeorm";
 import type {Relation} from "typeorm";
+import {TaskPriority, TaskStatus} from "../enums";
 import {User} from "./UserEntity";
-import {TaskPriority} from "./TaskPriority";
-import {TaskStatus} from "./TaskStatus";
 import {Project} from "./ProjectEntity";
 
 @Entity({name: "tasks"})
@@ -11,10 +10,10 @@ export class Task {
   id!: string;
 
   @Column()
-  title!: string;
+  name!: string;
 
-  @Column("text")
-  description?: string;
+  @Column()
+  description!: string;
 
   @Column({type: "enum", enum: TaskStatus, default: TaskStatus.OPEN})
   status: TaskStatus = TaskStatus.OPEN;
@@ -22,10 +21,10 @@ export class Task {
   @Column({type: "enum", enum: TaskPriority, default: TaskPriority.LOW})
   priority: TaskPriority = TaskPriority.LOW;
 
-  @Column("date", {default: () => "CURRENT_TIMESTAMP"})
+  @Column("timestamp", {default: () => "CURRENT_TIMESTAMP"})
   createdDate: Date = new Date();
 
-  @Column("date")
+  @Column("timestamp")
   dueDate?: Date;
 
   @ManyToOne(() => User, {

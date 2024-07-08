@@ -1,4 +1,12 @@
-import {Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable, ManyToOne} from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+  ManyToMany,
+  JoinTable,
+  ManyToOne,
+} from "typeorm";
 import type {Relation} from "typeorm";
 import {User} from "./UserEntity";
 import {Task} from "./TaskEntity";
@@ -11,10 +19,10 @@ export class Project {
   @Column()
   name!: string;
 
-  @Column("text")
-  description?: string;
+  @Column()
+  description!: string;
 
-  @Column("date", {default: () => "CURRENT_TIMESTAMP"})
+  @Column("timestamp", {default: () => "CURRENT_TIMESTAMP"})
   createdDate: Date = new Date();
 
   @ManyToOne(() => User, {
